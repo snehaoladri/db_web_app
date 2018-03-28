@@ -1,0 +1,36 @@
+<html>
+   <body>
+      <center> <img id="myImage" src="//:0" alt="can't display" width="512" height="512"></center>
+
+      <form action = "http://172.16.2.29:8891/predict" method = "POST" enctype = "multipart/form-data">        
+       <div style="height:0px;overflow:hidden">
+               <input type="file" id="fileInput" name="fileInput" multiple onchange="onFileSelected(event)" />
+          </div>
+         <center> <button type="button" onclick="chooseFile();">choose file</button></center>
+         <p id="tp"></p>
+        <center> <input type = "submit" value = "submit" /> </center>
+        
+      </form>
+      <script>
+                function onFileSelected(event) {
+                        var selectedFile = event.target.files[0];
+                        var reader = new FileReader();
+
+                        var imgtag = document.getElementById("myImage");
+                        imgtag.title = selectedFile.name;
+
+                        reader.onload = function(event) {
+                        imgtag.src = event.target.result;
+                         };
+
+                        reader.readAsDataURL(selectedFile);
+                }
+                function chooseFile(){
+                   document.getElementById("fileInput").click()
+                 }
+               
+          </script>
+
+      
+   </body>
+</html>
